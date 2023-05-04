@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# guridaek-modal-hook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+간단한 모달을 구현할 수 있는 라이브러리입니다.
 
-## Available Scripts
+## 설치 방법
 
-In the project directory, you can run:
+```sh
+npm install guridaek-react-modal-hook
+```
 
-### `npm start`
+## 사용 방법
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### useModal 불러오기
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```js
+import { useModal } from "guridaek-react-modal-hook";
+```
 
-### `npm test`
+### useModal 사용하기
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+const { modal, isOpen, open, close } = useModal("root", <></>);
+```
 
-### `npm run build`
+구현된 모달은 ESC를 누르거나 모달의 바깥을 누르면 닫힙니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## parameters
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+elementID: 모달의 부모가 될 Element의 ID.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+children: 모달 내부에 들어갈 컨텐츠.
 
-### `npm run eject`
+### 사용 예시
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```js
+import { useModal } from "guridaek-react-modal-hook";
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function App() {
+  const { modal, isOpen, open, close } = useModal(
+    "root",
+    <>
+      <h2>제목</h2>
+      <p>내용</p>
+    </>
+  );
+  return (
+    <div className="App">
+      <p onClick={open}>모달 오픈</p>
+      {modal}
+    </div>
+  );
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+export default App;
+```
