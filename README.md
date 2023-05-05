@@ -23,7 +23,7 @@ const { isModalOpen, openModal, closeModal } = useModal();
 
 ...
 
-<Modal closeModal={closeModal}>
+<Modal elementID={"modal"} closeModal={closeModal}>
   <>모달의 내용</>
 </Modal>;
 
@@ -32,6 +32,8 @@ const { isModalOpen, openModal, closeModal } = useModal();
 구현된 모달은 ESC를 누르거나 모달의 바깥을 누르면 닫힙니다.
 
 ## props
+
+- elementID: 모달을 렌더링할 DOM Element ID.
 
 - children: 모달 내부에 들어갈 컨텐츠. (ReactNode)
 
@@ -43,18 +45,20 @@ const { isModalOpen, openModal, closeModal } = useModal();
 import { Modal, useModal } from "guridaek-react-modal-hook";
 
 function App() {
-  const { openModal, closeModal } = useModal();
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
     <section>
       <button onclick={openModal}>모달 열기</button>
 
-      <Modal closeModal={closeModal}>
-        <div>
-          <h2>제목</h2>
-          <p>내용</p>
-        </div>
-      </Modal>
+      {isModalOpen ? (
+        <Modal elementID={"modal"} closeModal={closeModal}>
+          <div>
+            <h2>제목</h2>
+            <p>내용</p>
+          </div>
+        </Modal>
+      ) : null}
     </section>
   );
 }

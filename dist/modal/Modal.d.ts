@@ -1,7 +1,8 @@
 import React from "react";
 type ModalContainerProps = {
-    children: React.ReactNode;
+    elementID: string;
     closeModal: () => void;
+    children: React.ReactNode;
 };
-declare function Modal({ children, closeModal }: ModalContainerProps): React.ReactPortal;
+declare function Modal({ elementID, closeModal, children }: ModalContainerProps): React.ReactPortal;
 export default Modal;

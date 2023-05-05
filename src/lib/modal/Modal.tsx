@@ -4,11 +4,12 @@ import React from "react";
 import St from "./modalStyled";
 
 type ModalContainerProps = {
-  children: React.ReactNode;
+  elementID: string;
   closeModal: () => void;
+  children: React.ReactNode;
 };
 
-function Modal({ children, closeModal }: ModalContainerProps) {
+function Modal({ elementID, closeModal, children }: ModalContainerProps) {
   useKeyDown("Escape", closeModal);
 
   return createPortal(
@@ -17,7 +18,7 @@ function Modal({ children, closeModal }: ModalContainerProps) {
       <St.Container>{children}</St.Container>
     </>,
 
-    document.getElementById("modal") as HTMLDivElement
+    document.getElementById(elementID) as HTMLDivElement
   );
 }
 
