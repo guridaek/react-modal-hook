@@ -10,44 +10,52 @@ npm install guridaek-react-modal-hook
 
 ## 사용 방법
 
-### useModal 불러오기
+### Modal, useModal 불러오기
 
-```js
-import { useModal } from "guridaek-react-modal-hook";
+```ts
+import { Modal, useModal } from "guridaek-react-modal-hook";
 ```
 
-### useModal 사용하기
+### Modal, useModal 사용하기
 
-```js
-const { modal, isOpen, open, close } = useModal("root", <></>);
+```ts
+const { isModalOpen, openModal, closeModal } = useModal();
+
+...
+
+<Modal closeModal={closeModal}>
+  <>모달의 내용</>
+</Modal>;
+
 ```
 
 구현된 모달은 ESC를 누르거나 모달의 바깥을 누르면 닫힙니다.
 
-## parameters
+## props
 
-elementID: 모달의 부모가 될 Element의 ID.
+- children: 모달 내부에 들어갈 컨텐츠. (ReactNode)
 
-children: 모달 내부에 들어갈 컨텐츠.
+- closeModal: 모달을 닫기 위한 함수. `useModal`에 구현되어 있습니다.
 
 ### 사용 예시
 
-```js
-import { useModal } from "guridaek-react-modal-hook";
+```ts
+import { Modal, useModal } from "guridaek-react-modal-hook";
 
 function App() {
-  const { modal, isOpen, open, close } = useModal(
-    "root",
-    <>
-      <h2>제목</h2>
-      <p>내용</p>
-    </>
-  );
+  const { openModal, closeModal } = useModal();
+
   return (
-    <div className="App">
-      <p onClick={open}>모달 오픈</p>
-      {modal}
-    </div>
+    <section>
+      <button onclick={openModal}>모달 열기</button>
+
+      <Modal closeModal={closeModal}>
+        <div>
+          <h2>제목</h2>
+          <p>내용</p>
+        </div>
+      </Modal>
+    </section>
   );
 }
 

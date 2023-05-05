@@ -1,8 +1,6 @@
-import React from "react";
-declare function useModal(elementID: string, children: React.ReactNode): {
-    modal: React.ReactPortal;
-    isOpen: boolean;
-    open: () => void;
-    close: () => void;
+declare const useModal: () => {
+    isModalOpen: boolean;
+    openModal: () => void;
+    closeModal: () => void;
 };
 export default useModal;

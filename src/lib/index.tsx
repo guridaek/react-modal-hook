@@ -1,3 +1,4 @@
+import Modal from "./modal/Modal";
 import useModal from "./modal/useModal";
 
-export { useModal };
+export { Modal, useModal };
